@@ -1,0 +1,26 @@
+---
+title: "Logistics document agents"
+startDate: 2025-09-04
+category: "client"
+order: 1
+featured: false
+private: true
+description: "Agents and workflows that read shipping paperwork - invoices, bills of lading, packing lists - check it, and move it through a company's internal process."
+role: "Client project for a customs and logistics software company. I built the extraction, processing APIs, records and review screens, and contributed to the document-splitting pipeline."
+links: []
+tags: ["Agno", "Multi-agent", "Workflows", "OCR", "FastAPI", "PostgreSQL"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Shipment PDF", "items": ["Invoice", "Bill of lading", "Packing list"]}, {"label": "Agents", "accent": true, "items": ["Classify and split", "Extract fields", "Cross-check documents"]}, {"label": "People", "items": ["Review screen"]}, {"label": "Next step", "items": ["Internal workflow", "Email the right people"]}]} caption={"A coordinating agent fans each document out to a specialist sub-agent."} />
+
+**The project**
+
+A customs and logistics software company wanted its document handling to run on agents. A shipment arrives as one long PDF; the system works out which pages are the invoice, the bill of lading and the packing list, splits them, extracts every field into a typed record, checks the documents against each other, and kicks off the next step of the internal workflow - including emailing the right people.
+
+Under the hood it's agents and workflows working together: a coordinating agent that fans work out to specialist sub-agents per document type, with each step's state tracked so nothing gets lost. The longer-term architecture aimed at running thousands of these agents side by side on shared servers.
+
+**My part**
+- Built invoice extraction and validation, background processing with status endpoints, and the database models and automatic migrations.
+- Built the review screens where operations staff check extracted fields.
+- Contributed to the pipeline that classifies and splits multi-document shipment PDFs.

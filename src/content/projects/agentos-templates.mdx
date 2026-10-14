@@ -1,0 +1,27 @@
+---
+title: "AgentOS templates"
+startDate: 2026-01-29
+category: "product"
+order: 4
+featured: true
+description: "Production agent platforms you run in your own cloud - Railway, AWS or Docker - with the AgentOS runtime, Postgres, auth, Slack and evals included."
+role: "Main contributor to the AWS and Docker templates, and built Scout and the context-provider agents into the Railway one: code structure, integrations and how they run in the cloud."
+links: [{"label": "AWS template", "href": "https://github.com/agno-agi/agentos-aws-template"}, {"label": "Docker template", "href": "https://github.com/agno-agi/agentos-docker-template"}]
+tags: ["FastAPI", "AWS ECS", "RDS", "EFS", "Docker", "PostgreSQL"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "You", "items": ["One command"]}, {"label": "Your cloud", "items": ["Railway", "AWS", "Docker"]}, {"label": "Out of the box", "title": "Production agent platform", "accent": true, "items": ["AgentOS runtime", "Postgres", "Auth", "Slack"]}, {"label": "Your agents", "items": ["Any model", "Your data, your database"]}]} caption={"From an empty account to a running agent platform."} />
+
+AgentOS templates are the starting point for running Agno in your own cloud: one repo that runs the same way on a laptop and in production - a deploy script for **Railway**, Agno's infrastructure tooling for **AWS** (ECS, RDS, load balancer, optional EFS), and Docker Compose anywhere else.
+
+**Out of the box**
+- The AgentOS runtime: one FastAPI app with a REST API for agents, teams and workflows.
+- PostgreSQL for sessions, memory, knowledge, eval results and traces.
+- JWT auth in production, and a Slack interface that switches on when its tokens are set.
+- Reference agents (Pal, Scout, context-provider agents), an eval runner, and workflow docs for building agents with coding agents.
+
+**What I built**
+- The AWS and Docker templates: ported the reference agents, structured the code and kept both in step with Railway.
+- Persistent storage on AWS with EFS and access points, so an agent's local data survives deploys - plus the infrastructure support for it in Agno.
+- Scout and the context-provider agents in the Railway template, and the evals and docs synced across all three.

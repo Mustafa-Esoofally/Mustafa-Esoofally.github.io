@@ -1,0 +1,13 @@
+---
+title: "AI code review and CI"
+startDate: 2026-01-11
+order: 11
+description: "An automated AI code-review system for every pull request, and a faster, more trustworthy test suite."
+links: []
+tags: ["pytest", "GitHub Actions", "Claude Code"]
+---
+- Sharded the test suite to roughly halve CI time, with combined coverage reports.
+- Added a guard that fails CI when a test file isn't assigned to any job - it caught tests that had silently stopped running.
+- Audited the runnable cookbook examples and fixed stale APIs, async database patterns and knowledge loading.
+- Rewrote authorization tests to exercise the real request path.
+- **Automated code review:** a Claude Code system with specialized reviewer agents that reviewed every pull request; later tuned to run on request (`@claude review`) to cut noise.

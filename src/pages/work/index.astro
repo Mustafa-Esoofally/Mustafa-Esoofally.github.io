@@ -1,0 +1,47 @@
+---
+import ProjectCard from "src/components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
+import Flow from "../../components/diagrams/Flow.astro";
+
+const items = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order);
+const groups = [
+  { key: "agentos", title: "AgentOS - where agents meet people", blurb: "The runtime: chat interfaces, approvals, web frontends and access control.", slugs: ["chat-interfaces", "human-in-the-loop", "ag-ui", "security"] },
+  { key: "sdk", title: "SDK - what agents know and remember", blurb: "Context, memory, knowledge, integrations and models.", slugs: ["context-engineering", "learning-machines", "excel-knowledge", "google-workspace", "mcp-and-tools", "models"] },
+  { key: "engineering", title: "Engineering", blurb: "Keeping a fast-moving open-source codebase reliable.", slugs: ["ci-review"] },
+];
+const grouped = groups.flatMap((g) => g.slugs);
+const missing = items.filter((w) => !grouped.includes(w.id)).map((w) => w.id);
+if (missing.length) throw new Error("Ungrouped work items: " + missing.join(", "));
+---
+
+<IndexPageLayout title="Built at Agno" description="Agno is an agent platform that runs in your own cloud: the SDK to build agents, AgentOS to run them. These are the parts I built." subTitle="Built at Agno">
+  <nav slot="header" aria-label="Work sections" class="mt-5 flex flex-wrap gap-2">
+    {groups.map((g) => (
+      <a href={`#${g.key}`} class="rounded-full border px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary">{g.title}</a>
+    ))}
+    <a href="/projects#product" class="rounded-full border px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary">Templates and apps</a>
+  </nav>
+  <Flow
+    steps={[
+      { label: "Build", title: "Agno SDK", items: ["Agents", "Teams", "Workflows", "Context", "Memory and learning", "Knowledge"] },
+      { label: "Run", title: "AgentOS", accent: true, items: ["FastAPI runtime", "Your database", "Auth and roles", "Approvals"] },
+      { label: "Reach people", title: "Interfaces", accent: true, items: ["Slack", "Telegram", "WhatsApp", "Web apps (AG-UI)", "Other agents (A2A)"] },
+      { label: "Ship", title: "Templates", items: ["Railway", "AWS", "Docker"] },
+    ]}
+    caption="How a production agent comes together on Agno - highlighted where most of my work sits."
+  />
+  <div class="flex w-full flex-col gap-12">
+    {groups.map((g) => (
+      <section id={g.key} class="scroll-mt-24">
+        <h2 class="m-0 text-xl font-semibold">{g.title}</h2>
+        <p class="m-0 mb-4 text-sm text-muted-foreground">{g.blurb}</p>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {items.filter((w) => g.slugs.includes(w.id)).map((w) => (
+            <ProjectCard href={"/work/" + w.id} heading={w.data.title} subheading={w.data.description} tags={w.data.tags} />
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</IndexPageLayout>

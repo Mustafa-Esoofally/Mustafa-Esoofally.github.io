@@ -1,0 +1,15 @@
+---
+title: "Human-in-the-loop approvals"
+startDate: 2026-04-17
+order: 2
+description: "Agents pause, people approve. Approval flows in Slack and in web frontends, for single agents and teams."
+links: [{"label": "Slack approvals docs", "href": "https://docs.agno.com/agent-os/interfaces/slack/hitl"}]
+tags: ["HITL", "Slack", "AG-UI"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Agent run", "items": ["Calls a sensitive tool"]}, {"label": "Pause", "title": "Run waits", "accent": true, "items": ["Confirmation", "User input", "External result"]}, {"label": "Person decides", "items": ["Approve / Deny card in Slack", "Form in the web app"]}, {"label": "Resume", "items": ["Same run continues", "Nothing lost"]}]} loop={"Works for single agents and teams - if a member agent pauses, the whole team waits for the answer."} caption={"Agents pause, people approve."} />
+
+- Slack approval cards for every pause type: confirm, ask for input, collect feedback, or run a step outside the agent.
+- The same flows over AG-UI for browser frontends.
+- Pause state that survives across multiple rounds for teams of agents.

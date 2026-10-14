@@ -1,0 +1,32 @@
+---
+import { ChevronRight } from "lucide-react";
+
+interface Props { current?: string }
+const { current } = Astro.props;
+
+const SECTIONS: Record<string, string> = { work: "Work", projects: "Projects", experiences: "Experience" };
+const [section, slug] = Astro.url.pathname.split("/").filter(Boolean);
+const crumbs = [{ label: "Home", href: "/" }];
+if (section && SECTIONS[section]) crumbs.push({ label: SECTIONS[section], href: `/${section}` });
+if (slug && current) crumbs.push({ label: current, href: Astro.url.pathname });
+
+const ld = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, item: new URL(c.href, Astro.site).href })),
+};
+---
+
+<nav aria-label="Breadcrumb">
+  <ol class="m-0 flex list-none flex-wrap items-center gap-1 p-0 text-sm text-muted-foreground">
+    {crumbs.map((c, i) => (
+      <li class="flex items-center gap-1">
+        {i > 0 && <ChevronRight size={14} aria-hidden="true" />}
+        {i === crumbs.length - 1
+          ? <span aria-current="page" class="text-foreground">{c.label}</span>
+          : <a href={c.href} class="hover:text-primary">{c.label}</a>}
+      </li>
+    ))}
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />

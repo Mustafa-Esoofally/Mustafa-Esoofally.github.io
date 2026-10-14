@@ -1,0 +1,48 @@
+---
+import ContentTags from "../components/ContentTags.astro";
+import IndexPageLayout from "./IndexPageLayout.astro";
+import { Lock, ArrowUpRight, ArrowLeft } from "lucide-react";
+
+const { frontmatter } = Astro.props;
+const { title, description, image, tags, canonical, role, links = [], private: isPrivate, company, category } = frontmatter;
+const heading = company ? `${frontmatter.title} · ${company}` : title;
+const section = Astro.url.pathname.split("/").filter(Boolean)[0];
+const back = { work: ["/work", "Back to Work"], projects: ["/projects", "Back to Projects"], experiences: ["/experiences", "Back to Experience"] }[section];
+const desc = description ?? frontmatter.summary ?? "";
+---
+
+<IndexPageLayout narrow crumb={company ?? title} title={heading} description={desc} image={image} subTitle={heading} canonicalURL={canonical}>
+  <div slot="header" class="mt-4 flex flex-col items-start gap-3">
+    {tags && <ContentTags tags={tags} />}
+    {role && <p class="m-0 text-sm text-muted-foreground">{role}</p>}
+    {category === "in-progress" && (
+      <a href="/#contact" data-email data-subject="Early access" class="inline-flex items-center gap-1.5 rounded-full border border-primary/40 px-3 py-1 text-xs text-primary hover:bg-primary/10">
+        In progress - reach out for access
+      </a>
+    )}
+    {isPrivate && category !== "in-progress" && (
+      <p class="m-0 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs text-muted-foreground">
+        <Lock size={12} /> Private repository - described here, code not public
+      </p>
+    )}
+    {links.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {links.map((l: { label: string; href: string }) => (
+          <a href={l.href} target="_blank" rel="noopener" class="inline-flex items-center gap-1 rounded-lg border px-3 py-1.5 text-sm hover:border-primary hover:text-primary">
+            {l.label} <ArrowUpRight size={14} />
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+  <div class="flex w-full flex-col gap-4 border-t pt-6">
+    <article class="prose max-w-none dark:prose-invert prose-code:before:content-none prose-code:after:content-none prose-a:font-normal prose-a:decoration-primary prose-a:underline-offset-4 hover:prose-a:text-primary">
+      <slot />
+    </article>
+    {back && (
+      <a href={back[0]} class="mt-4 inline-flex w-fit items-center gap-1.5 text-sm text-muted-foreground hover:text-primary">
+        <ArrowLeft size={14} /> {back[1]}
+      </a>
+    )}
+  </div>
+</IndexPageLayout>

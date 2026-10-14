@@ -1,0 +1,13 @@
+---
+title: "MCP and docs for coding agents"
+startDate: 2026-04-10
+order: 9
+description: "Making agents and coding tools work together: reliable MCP results in Claude Code, docs that agents can read, and MCP-backed web research."
+links: [{"label": "Agno for coding agents", "href": "https://docs.agno.com/coding-agents"}, {"label": "llms.txt tools docs", "href": "https://docs.agno.com/tools/toolkits/others/llms-txt"}, {"label": "Claude Code MCP issue", "href": "https://github.com/agno-agi/agno/issues/9764"}]
+tags: ["MCP", "Claude Code", "llms.txt", "Tools"]
+---
+- **MCP results in Claude Code:** found and fixed why Claude Code showed no answer from AgentOS MCP tools (structured results without a text body), plus automatic exposure of whole toolkits as MCP tools. The fix shipped in Agno.
+- **Docs agents can read:** built llms.txt support - an agent reads a documentation index and fetches only the pages it needs, or loads the docs into a knowledge base. This is how an internal docs agent stays accurate for coding agents.
+- **Schemas that survive:** fixed nested tool schemas so MCP tools with complex inputs work with Claude.
+- **Keyless web research over MCP**, and authenticated Exa MCP in the deployment templates.
+- Toolkits for GitHub, Parallel's Task and Monitor APIs, Daytona, Serper, Crawl4AI and more, plus consistent tool naming across dozens of toolkits.

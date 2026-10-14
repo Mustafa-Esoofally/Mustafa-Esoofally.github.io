@@ -1,0 +1,47 @@
+---
+import { buttonVariants } from "../components/ui/button";
+import { cn } from "../lib/utils";
+import { ModeToggle } from "../components/react/ThemeToggle";
+import { PROFILE } from "../content/profileData";
+
+const SITE = PROFILE.site;
+const section = "/" + (Astro.url.pathname.split("/").filter(Boolean)[0] ?? "");
+const navCls = (href: string) => cn(buttonVariants({ variant: "ghost" }), "px-1.5 text-[13px] sm:px-4 sm:text-sm", section === href && "text-primary");
+const cur = (href: string) => (section === href ? "page" : undefined);
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60"
+>
+  <div
+    class="container flex h-16 items-center justify-between gap-1 px-3 sm:px-8"
+  >
+    <div class="flex gap-6 md:gap-10">
+      <a href="/" class="flex items-center space-x-2 max-[359px]:hidden">
+        <span class="inline-block text-sm font-bold whitespace-nowrap sm:text-base"><span class="sm:hidden">Mustafa</span><span class="hidden sm:inline">{PROFILE.name}</span></span>
+      </a>
+    </div>
+    <div class="flex items-center justify-end">
+      <nav class="flex items-center gap-0 sm:gap-1">
+        <a href="/work" aria-current={cur("/work")} class={navCls("/work")}> Work </a>
+        <a href="/projects" aria-current={cur("/projects")} class={navCls("/projects")}>
+          Projects
+        </a>
+        <a href="/experiences" aria-current={cur("/experiences")} class={navCls("/experiences")}>
+          Experience
+        </a>
+        <a
+          href={PROFILE.links.github}
+          target="_blank"
+          rel="noreferrer"
+          class={cn(buttonVariants({ variant: "ghost" }), "hidden sm:inline-flex")}
+        >
+          GitHub
+        </a>
+
+        <ModeToggle transition:persist client:load />
+      </nav>
+    </div>
+  </div>
+</header>
+

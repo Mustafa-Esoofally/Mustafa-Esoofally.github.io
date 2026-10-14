@@ -1,0 +1,40 @@
+---
+title: "Procurement intelligence agents"
+startDate: 2025-05-20
+category: "client"
+status: "Live"
+order: 0
+featured: true
+private: true
+description: "Seven research agents that analyze a spend category the way a sourcing team would - switching barriers, PESTLE, Porter's Five Forces, Kraljic matrix, cost drivers and alternative suppliers - and turn it into one report."
+role: "Client project for a beverage importer's category-management team. I designed and built the whole system, from a single-agent first version to the seven-agent platform."
+links: []
+tags: ["Agno", "Multi-agent", "Firecrawl", "FastAPI", "PostgreSQL", "Streamlit"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Input", "items": ["Spend category", "Supplier"]}, {"label": "Seven research agents", "accent": true, "items": ["Company overview", "Switching barriers", "PESTLE", "Porter's Five Forces", "Kraljic matrix", "Cost drivers", "Alternative suppliers"]}, {"label": "Output", "items": ["One supplier report", "Dashboard"]}]} caption={"The analysis a sourcing team does by hand, run by agents in parallel."} />
+
+**The problem**
+
+Sourcing teams decide how to buy each category with frameworks like the **Kraljic matrix**: plot the category by *supply risk* and *profit impact*, and it lands in one of four quadrants - **routine**, **bottleneck**, **leverage** or **strategic** - each with its own sourcing strategy. Doing that properly means researching suppliers, markets and costs by hand.
+
+**The seven agents**
+
+A company-overview agent researches the buyer and the category, then six specialists each produce a typed analysis:
+1. **Company overview** - who the buyer is and what the category looks like.
+2. **Switching barriers** - scored 1-9 for staying versus moving to a new supplier.
+3. **PESTLE** - political, economic, social, technological, legal and environmental factors, with impact scores.
+4. **Porter's Five Forces** - how much power suppliers and buyers really have.
+5. **Kraljic matrix** - the category's position and a recommended sourcing strategy.
+6. **Cost drivers** - what actually moves the price.
+7. **Alternative suppliers** - ranked options to consider.
+
+The agents research the web as they work and reason step by step, and every framework has its own structured output, so the report is consistent run to run.
+
+**How it runs**
+- Analyses run as background jobs, with partial-completion status if one step fails.
+- Results are stored in Postgres and shown in a review dashboard: an interactive Kraljic matrix, radar and bar charts, and JSON export.
+- Started as a single-agent dashboard, then rebuilt as the seven-agent system.
+
+**My part:** designed and built all of it - the agents, their output models, the API, storage and the dashboard. For the same client I also moved their finance and supplier platform onto Agno 2.0 and added MySQL support (see [Finance and supplier agents](/projects/beverage-finance-agents)).

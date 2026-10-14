@@ -1,0 +1,38 @@
+---
+import ProjectCard from "src/components/ProjectCard.astro";
+import { getCollection } from "astro:content";
+import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
+
+const all = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const sections = [
+  { key: "product", title: "Enterprise apps", blurb: "Agent apps and templates you run in your own cloud - any model, any database." },
+  { key: "enterprise", title: "Enterprise work", blurb: "Helping large companies put agents into production - described by industry." },
+  { key: "client", title: "Client builds", blurb: "Agent systems built for customers - described by industry, code is private." },
+  { key: "in-progress", title: "In progress", blurb: "What I'm building now." },
+  { key: "personal", title: "Personal projects", blurb: "Things I built to learn and ship." },
+];
+---
+
+<IndexPageLayout title="Projects" description="Agents, platforms and products I've designed and built." subTitle="Projects">
+  <nav slot="header" aria-label="Project sections" class="mt-5 flex flex-wrap gap-2">
+    {sections.filter((s) => all.some((p) => p.data.category === s.key)).map((s) => (
+      <a href={`#${s.key}`} class="rounded-full border px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary">{s.title}</a>
+    ))}
+  </nav>
+  <div class="flex w-full flex-col gap-12">
+    {sections.map((s) => {
+      const items = all.filter((p) => p.data.category === s.key);
+      return items.length > 0 && (
+        <section id={s.key} class="scroll-mt-24">
+          <h2 class="m-0 text-xl font-semibold">{s.title}</h2>
+          <p class="m-0 mb-4 text-sm text-muted-foreground">{s.blurb}</p>
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((p) => (
+              <ProjectCard href={"/projects/" + p.id} heading={p.data.title} subheading={p.data.description} role={p.data.role} tags={p.data.tags} isPrivate={p.data.private} />
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+</IndexPageLayout>

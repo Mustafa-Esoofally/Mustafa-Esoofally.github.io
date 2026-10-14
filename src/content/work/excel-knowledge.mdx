@@ -1,0 +1,12 @@
+---
+title: "Excel knowledge bases"
+startDate: 2026-01-20
+order: 8
+description: "A dedicated Excel reader so agents can answer questions over spreadsheets - right sheets, right rows, with context intact."
+links: [{"label": "Knowledge docs", "href": "https://docs.agno.com/knowledge/overview"}]
+tags: ["RAG", "Knowledge", "Excel"]
+---
+- Split Excel out of the CSV reader into its own reader for `.xlsx` and `.xls`, with automatic routing by file type.
+- Choose sheets by name or index, skip hidden sheets, and ingest row-by-row or sheet-by-sheet.
+- Every chunk keeps its workbook, sheet and row metadata, so answers can point back to where they came from.
+- Part of a wider knowledge-hardening pass: deterministic chunk IDs, crawl de-duplication and an embedder memory fix.

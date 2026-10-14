@@ -1,0 +1,22 @@
+---
+title: "Dash"
+startDate: 2026-01-30
+category: "product"
+order: 2
+featured: true
+description: "A self-learning SQL data agent that grounds answers in schema, business rules and past queries."
+role: "I designed Dash's architecture and set up how it runs in production in a team's Slack."
+links: [{"label": "Repository", "href": "https://github.com/agno-agi/dash"}, {"label": "Docs", "href": "https://docs.agno.com/deploy/templates/dash/overview"}]
+tags: ["Agno", "Text-to-SQL", "Slack", "Railway"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Question", "items": ["Plain English", "From Slack"]}, {"label": "Context layers", "accent": true, "items": ["Table schemas", "Validated queries", "Business rules", "What it has learned"]}, {"label": "Dash", "items": ["Analyst (read-only)", "Engineer (read-write)"]}, {"label": "Answer", "items": ["Grounded SQL", "Result explained"]}]} loop={"Every answer feeds back into what Dash has learned, so the next question is easier."} caption={"Grounded answers, not guessed SQL."} />
+
+Dash answers business questions in plain English with grounded SQL. Every answer is grounded in layered context - table schemas, validated queries, business rules and what it has learned - and it runs as an analyst/engineer pair with read-only and read-write access.
+
+**Built to run in your cloud.** Any model, Postgres for data and learnings, JWT auth, Slack and an eval suite for accuracy, routing and safety.
+
+**What I built**
+- The architecture: layered context, the analyst/engineer split and the learning loop.
+- The production setup for running Dash in a team's Slack workspace.

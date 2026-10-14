@@ -1,0 +1,30 @@
+---
+const facts = [
+  { label: "Role", html: 'Applied AI engineer, most recently at <a href="/experiences/agno">Agno</a> <span class="whitespace-nowrap">(2025 - 2026)</span>. MS in Computer Science, FIU.' },
+  { label: "Shipped for", html: 'A Fortune 10 company, an asset manager, an accounting firm and a law firm - from <a href="/projects/policy-assistant">multi-agent knowledge assistants</a> to a <a href="/projects/procurement-intelligence">live procurement system</a>.' },
+  { label: "Under the hood", html: 'Core engineer on Agno\'s runtime, not just apps on top - including the <a href="/work/security">per-user isolation and access control</a> enterprises ask about.' },
+  { label: "Stack", html: "Python, TypeScript, FastAPI, Postgres, AWS. OpenAI, Anthropic, Gemini and Bedrock in production." },
+  { label: "Based", html: "NYC / SF" },
+]
+---
+
+<div class="mt-2 flex flex-col gap-4 animate-appear">
+  <dl class="glance m-0 flex flex-col gap-3 text-sm">
+    {facts.map((f) => (
+      <div>
+        <dt class="text-xs uppercase tracking-wider text-muted-foreground">{f.label}</dt>
+        <dd class="m-0 mt-0.5 leading-relaxed" set:html={f.html} />
+      </div>
+    ))}
+  </dl>
+</div>
+
+<style>
+  .glance :global(a) {
+    color: hsl(var(--foreground));
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--primary));
+    text-underline-offset: 3px;
+  }
+  .glance :global(a:hover) { color: hsl(var(--primary)); }
+</style>

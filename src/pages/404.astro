@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+import { buttonVariants } from '../components/ui/button'
+---
+
+<BaseLayout
+  title="404 - Not Found"
+  description="404 Error — this page was not found"
+>
+  <main class="flex h-[70vh] w-full flex-auto items-center justify-center">
+    <div class="flex flex-col items-center justify-center px-8">
+      <p class="text-sm text-muted-foreground">404</p>
+      <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
+        Page not found
+      </h1>
+      <p class="mb-4 leading-7 not-first:mt-6">
+        That page doesn't exist. Try the homepage, my work at Agno, or my projects.
+      </p>
+      <div class="flex gap-2"><a href="/" class={buttonVariants()}>Home</a><a href="/work" class={buttonVariants({ variant: "outline" })}>Work</a><a href="/projects" class={buttonVariants({ variant: "outline" })}>Projects</a></div>
+    </div>
+  </main>
+</BaseLayout>

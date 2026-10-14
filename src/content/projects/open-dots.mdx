@@ -1,0 +1,23 @@
+---
+title: "Open Dots"
+startDate: 2026-09-20
+category: "in-progress"
+order: 1
+private: true
+description: "An open-source personal agent you text. It never goes silent, asks before it acts, and runs on your own machine with your own model."
+role: "Personal project - sole author of the code, product spec and architecture."
+links: []
+tags: ["TypeScript", "Agents", "SQLite", "MCP", "Telegram", "iMessage"]
+---
+Open Dots is a personal agent you talk to over chat. It's built on Vercel's eve runtime, with my own layer for safety, memory and scheduling on top.
+
+**How it works**
+- **One approval policy** sits in front of every tool and connection - each action runs automatically, asks first, or is never allowed.
+- **Taint tracking:** once a session reads untrusted content (an email, a web page), it can't take side-effecting actions without approval.
+- **An activity ledger** in SQLite records every action, approval and cost.
+- **Recurring tasks** run on a durable scheduler with atomic leasing, so nothing double-fires.
+- **Learning memory** captures facts, preferences and rules from your corrections.
+- **Channels:** Telegram, iMessage (locked to the owner), and an MCP channel so Claude Code or Cursor can drive it. Peers let it hand work to other agents.
+- **Bring your own model:** OpenAI, Anthropic or OpenRouter.
+
+**Status:** chat, rules and approvals, the activity log, memory, web search and a sandbox are working locally. Task heartbeats and a watchdog, iMessage delivery and a browser are in progress.

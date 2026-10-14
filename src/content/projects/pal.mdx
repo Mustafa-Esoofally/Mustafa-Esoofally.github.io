@@ -1,0 +1,17 @@
+---
+title: "Pal"
+startDate: 2026-01-29
+category: "product"
+order: 5
+featured: false
+description: "A personal second-brain agent that learns every run - your notes, people and research in one agent, with what it learns kept separate from your data."
+role: "I designed Pal and built the learning-machine primitives it runs on, and made it deployable on Docker, AWS and Railway."
+links: []
+tags: ["Agno", "Learning", "DuckDB", "Exa MCP", "AWS EFS"]
+---
+
+Pal is a personal agent that learns how you work. It researches the web, keeps your notes, bookmarks, people and meetings in tables it creates as needed, and gets better every run through a learning machine - with a strict line between your data and what it learns about doing the job.
+
+**What I built**
+- The design and the learning-machine primitives: learning stores, team support, and guards that stop agents looping when they update memory.
+- Deployment on Docker, AWS (with EFS so its database survives deploys) and Railway, with authenticated Exa MCP for research.

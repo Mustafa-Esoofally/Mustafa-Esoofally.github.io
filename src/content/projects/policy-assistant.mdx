@@ -1,0 +1,24 @@
+---
+title: "Internal knowledge assistant for professional-services firms"
+startDate: 2025-09-15
+category: "enterprise"
+order: 2
+private: true
+description: "A multi-agent RAG system that answers employees' questions from the firm's own handbooks - HR, leave, travel, expenses and tax - deployed for a global asset manager, a top-10 accounting firm and an AmLaw 50 law firm."
+role: "Client project, deployed for three firms."
+links: []
+tags: ["Agno", "Multi-agent", "Agentic RAG", "Text-to-SQL", "Knowledge"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Employee asks", "items": ["How many leave days do I have?", "Can I book this flight?", "Which hotels are allowed?"]}, {"label": "Coordinator", "title": "Routes the question", "items": ["Plans the search", "Picks the right specialist"]}, {"label": "Specialist agents", "accent": true, "items": ["Handbooks and HR", "Travel and expenses", "Tax", "Notion and wikis", "PDFs and documents", "SQL for structured data"]}, {"label": "Answer", "items": ["Grounded in the policy", "Points to the source"]}]} loop="Each specialist runs agentic search and full RAG over its own knowledge base, so retrieval stays precise as the documents grow." caption="Everything is already in the documents - the job is retrieving the right part, every time." />
+
+**The problem:** every large firm has the answers in its handbooks - leave, travel, expenses, tax, HR rules - but nobody can find them, so the same questions land in HR's inbox again and again.
+
+**What it does**
+- Employees ask in plain English: *"How many leave days do I have?"*, *"I'm flying from New York to Chicago next week - can I book this flight, and which hotels can I use?"*
+- A multi-agent system: a coordinator routes each question to specialized agents, each running on its own slice of company knowledge - handbooks, HR guidelines, travel and expense policy, tax documents, Notion pages and PDFs.
+- Each specialist retrieves with Agno's knowledge features - agentic search and full RAG over the document embeddings - and a reasoning SQL agent handles structured data like leave balances.
+- Answers stay grounded in the firm's own policy and point back to the source, instead of guessing.
+
+**Where it ran:** a global asset manager, a top-10 accounting firm and an AmLaw 50 law firm.

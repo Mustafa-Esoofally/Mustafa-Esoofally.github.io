@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import { formateLocalMonth } from "../../lib/utils";
+import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
+import { ArrowRight } from "lucide-react";
+
+const experiences = (await getCollection("experiences")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<IndexPageLayout title="Experience" description="Where I've worked and what I built there." subTitle="Experience">
+  <ol class="m-0 flex w-full max-w-3xl list-none flex-col gap-3 p-0">
+    {experiences.map((e) => (
+      <li>
+        <a href={`/experiences/${e.id}`} class="group/item block rounded-2xl border bg-card p-5 transition-colors hover:border-primary">
+          <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+            <h2 class="m-0 text-lg font-semibold group-hover/item:text-primary">
+              {e.data.company} <span class="font-normal text-muted-foreground">· {e.data.title}</span>
+            </h2>
+            <span class="shrink-0 text-sm tabular-nums text-muted-foreground">
+              {formateLocalMonth(e.data.startDate)} - {e.data.endDate ? formateLocalMonth(e.data.endDate) : "Present"}
+            </span>
+          </div>
+          {e.data.location && <p class="m-0 mt-0.5 text-sm text-muted-foreground">{e.data.location}</p>}
+          {e.data.highlights.length > 0 && (
+            <ul class="mt-3 space-y-1 pl-4 text-sm">
+              {e.data.highlights.map((h) => <li class="list-disc marker:text-primary">{h}</li>)}
+            </ul>
+          )}
+          <div class="mt-3 flex flex-wrap items-center gap-1.5">
+            {(e.data.tags ?? []).map((t) => <span class="tag rounded-md px-2 py-0.5 text-xs">{t}</span>)}
+            <span class="ml-auto inline-flex items-center gap-1 text-sm text-primary">Details <ArrowRight className="h-4 w-4" /></span>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ol>
+</IndexPageLayout>

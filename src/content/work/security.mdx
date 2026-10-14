@@ -1,0 +1,18 @@
+---
+title: "Access control and isolation"
+startDate: 2026-02-10
+order: 5
+description: "Every user only sees their own sessions, memories and traces, permissions follow the resource, and agents only get the tools their role needs."
+links: []
+tags: ["Security", "JWT", "RBAC", "Databases"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Caller", "items": ["User (JWT)", "Service account", "Another agent (A2A)"]}, {"label": "Authorization", "accent": true, "items": ["Verify token", "Check scopes", "Roles"]}, {"label": "Isolation", "items": ["User ID from the token", "Own sessions only", "Own memories only"]}, {"label": "Allowed", "items": ["Agents they may run", "Tools they may call"]}]} caption={"Identity comes from the verified token, never from what the client claims."} />
+
+- **Ownership:** user identity from the JWT now drives session, memory and trace reads and writes across all 17 database backends - callers can't pass someone else's ID.
+- **Role-based scopes:** fixed an authorization bypass where an agent-read token could reach knowledge endpoints, and brought agent-to-agent (A2A) run, stream and cancel under the same scope checks.
+- **Security reports:** took four external reports from triage to verified fixes in a release, including per-tool scope checks on the MCP server.
+- **File safety:** hardened path handling for agent file tools - no escaping the workspace, no reserved or control-character names.
+- **Tool-level least privilege:** read-only agents get read-only tools (for example, Coda's explorer can't create or delete git worktrees).
+- **Guardrails:** fixed a case where guardrails were skipped when hooks ran in the background.

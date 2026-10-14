@@ -1,0 +1,18 @@
+---
+title: "Learning machines and memory"
+startDate: 2026-05-20
+order: 7
+description: "Agents that get better every run: learning stores for users, sessions, entities and shared knowledge - for single agents and teams."
+links: [{"label": "Learning docs", "href": "https://docs.agno.com/learning/overview"}]
+tags: ["Learning", "Memory", "Agents", "Teams"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Run", "items": ["Agent", "Team"]}, {"label": "Learning stores", "accent": true, "items": ["User profile", "User memory", "Session context", "Entity memory", "Learned knowledge", "Decision log"]}, {"label": "Next run", "items": ["Recalled into context", "Gets better each time"]}]} loop={"Learning modes: Always (extracts in the background), Agentic (the agent decides what to save), Propose (asks first)."} caption={"Learning machine = agent + learning stores."} />
+
+A learning machine is a set of stores an agent writes to while it works - user profile, user memory, session context, entity memory, learned knowledge and a decision log - and reads from next time. Pal is built on it.
+
+- Built the learning-machine primitives, including full support for teams: learning context, async learning tools and automatic history.
+- Kept system prompts and tool scaffolding out of what gets learned, so memories are about the user, not the plumbing.
+- Added per-run limits on memory updates across every learning store.
+- Kept user identity intact through memory updates, deletes and topic queries.

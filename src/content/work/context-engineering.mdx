@@ -1,0 +1,22 @@
+---
+title: "Context engineering and efficient tool calling"
+startDate: 2026-04-29
+order: 6
+description: "Keeping long-running agents fast and on-task: compressed tool results, selective tool history, token counting and context providers."
+links: [{"label": "Compression docs", "href": "https://docs.agno.com/compression/overview"}]
+tags: ["Context", "Tool calling", "Compression"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Long-running agent", "items": ["Many tool calls", "Large tool outputs", "Long conversations"]}, {"label": "Context engine", "title": "What I built", "accent": true, "items": ["Compress tool results", "Keep last N tool calls", "Count tokens", "Context providers"]}, {"label": "Model sees", "items": ["Compact context", "Only the tools it needs"]}]} loop={"The full history stays in the database - only what the model sees gets smaller."} caption={"Compression kicks in at a count or token threshold, whichever comes first."} />
+
+**Efficient tool calling**
+- Tool-result compression: once outputs pile up, agents summarize them instead of re-sending raw tool output every turn.
+- Selective tool history: keep only the last few tool exchanges across runs.
+- Token counting that works across OpenAI, Anthropic, Bedrock, Gemini and LiteLLM, wired into compression.
+- Prototyped "code mode", where an agent batches many tool calls into one generated Python step - a large cut in tokens per task.
+
+**Context providers**
+- Gmail and Calendar providers with separate read and write sub-agents and minimal scopes.
+- Live streaming of sub-agent tool calls to the parent, so frontends can show what's being looked up.
+- Hardened context providers: injectable write tools, query timeouts, and Git access that keeps tokens off disk.

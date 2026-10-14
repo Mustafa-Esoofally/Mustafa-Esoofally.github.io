@@ -1,0 +1,23 @@
+---
+title: "Scout"
+startDate: 2026-02-03
+category: "product"
+order: 1
+featured: true
+description: "An open-source company-intelligence agent that navigates Slack, Drive, wiki and CRM instead of chunk-and-embed."
+role: "I designed Scout's architecture, built its first eval suite, and moved it onto Agno's shared context-provider library."
+links: [{"label": "Repository", "href": "https://github.com/agno-agi/scout"}, {"label": "Docs", "href": "https://docs.agno.com/deploy/templates/scout/overview"}]
+tags: ["Agno", "Context providers", "Evals", "Slack", "PostgreSQL"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "Question", "items": ["From Slack", "From the web"]}, {"label": "Scout", "title": "One agent", "accent": true, "items": ["query_<source> tools"]}, {"label": "Context providers", "title": "A sub-agent per source", "items": ["Slack", "Drive", "Wiki", "CRM", "MCP servers"]}, {"label": "Answer", "items": ["Grounded in sources", "Wiki and CRM kept up to date"]}]} caption={"Scout navigates sources instead of chunking and embedding everything up front."} />
+
+Scout is a company-intelligence agent. Instead of chunking and embedding everything up front, it **navigates** a company's sources - Slack, Google Drive, a wiki, a CRM and MCP servers - and keeps its own wiki and CRM up to date as it learns.
+
+**Built to run in your cloud.** Any model, Postgres for its wiki and CRM, JWT auth in production, and Slack as its home - each thread is a session. CRM writes are locked to Scout's own schema by the database, not by a prompt.
+
+**What I built**
+- The architecture: one agent, one `query_<source>` tool per source, each backed by its own sub-agent.
+- Context providers in Agno - including Slack, Gmail and Calendar - with live streaming of sub-agent work.
+- Scout's first evaluation suite, and the migration onto Agno's shared context-provider library - which also fixed a user-ID leak into CRM rows.

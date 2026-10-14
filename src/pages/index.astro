@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import IntroCard from "../components/sections/IntroCard.astro";
+import AboutMe from "../components/sections/AboutMe.astro";
+import Card from "../components/Card.astro";
+import ExperienceCard from "../components/sections/ExperienceCard.astro";
+import Projects from "../components/sections/Projects.astro";
+import { PROFILE } from "../content/profileData";
+import BlogCard from "../components/sections/BlogCard.astro";
+import ProductsCard from "../components/sections/ProductsCard.astro";
+const SITE = PROFILE.site;
+---
+
+<BaseLayout title={SITE.SEO.title} description={SITE.SEO.description}>
+  <main
+    transition:animate="fade"
+    class="relative m-auto grid w-full max-w-6xl gap-2 overflow-hidden p-2 sm:gap-2 sm:p-4 md:grid-cols-2 md:gap-3 md:p-6 lg:grid-cols-12 lg:gap-4"
+  >
+    <Card
+      colSpan="lg:col-span-9 md:col-span-2"
+    >
+      <IntroCard />
+    </Card>
+    <Card
+      colSpan="lg:col-span-3 md:col-span-2"
+      title="At a glance"
+    >
+      <AboutMe />
+    </Card>
+    <Card colSpan="lg:col-span-9 md:col-span-2" title="Enterprise apps">
+      <ProductsCard />
+    </Card>
+    <Card colSpan="lg:col-span-3 md:col-span-2" title="In progress">
+      <Projects category="in-progress" limit={3} moreLabel="" />
+    </Card>
+    <Card colSpan="lg:col-span-12 md:col-span-2" title="Built at Agno">
+      <BlogCard />
+    </Card>
+    <Card colSpan="lg:col-span-6 md:col-span-2" title="Experience">
+      <ExperienceCard />
+    </Card>
+    <Card colSpan="lg:col-span-6 md:col-span-2" title="Enterprise & client work">
+      <p class="m-0 mt-3 text-xs uppercase tracking-wider text-muted-foreground">Enterprise</p>
+      <Projects category="enterprise" limit={4} moreLabel="" />
+      <p class="m-0 mt-5 text-xs uppercase tracking-wider text-muted-foreground">Client builds</p>
+      <Projects category="client" limit={6} moreLabel="All projects" />
+    </Card>
+    <Card colSpan="lg:col-span-12 md:col-span-2">
+      <div id="contact" class="flex scroll-mt-24 flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+        <p class="m-0 text-base"><span class="font-semibold">Hiring for Applied AI or Forward Deployed Engineering?</span> <span class="text-muted-foreground">I'd love to talk.</span></p>
+        <div class="flex flex-col items-start gap-1 sm:items-end">
+          <a href="#contact" data-email class="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90">Email me</a>
+          <span class="text-xs text-muted-foreground">{PROFILE.links.emailText}</span>
+        </div>
+      </div>
+    </Card>
+  </main>
+</BaseLayout>
+
+<!--<script>-->
+<!--  // JS for animating the cards-->
+<!--  import { stagger, spring, timeline, type TimelineDefinition } from 'motion'-->
+<!--  import { loaderAnimation } from '../lib/constants'-->
+
+<!--  const cards = document.querySelectorAll('.card-animate')-->
+
+<!--  const sequence = [-->
+<!--    loaderAnimation,-->
+<!--    [-->
+<!--      cards,-->
+<!--      {y: ['40%', '0%'], opacity: [0, 1]},-->
+<!--      {-->
+<!--        at: '-0.1',-->
+<!--        duration: 0.2,-->
+<!--        delay: stagger(0.1),-->
+<!--        easing: spring({velocity: 200, stiffness: 50, damping: 10}),-->
+<!--      },-->
+<!--    ],-->
+<!--  ]-->
+
+<!--  timeline(sequence as TimelineDefinition)-->
+<!--</script>-->

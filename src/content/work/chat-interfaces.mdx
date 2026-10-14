@@ -1,0 +1,16 @@
+---
+title: "Agents where people already work"
+startDate: 2026-02-15
+order: 1
+description: "Slack, Telegram and WhatsApp interfaces - streaming replies, media, live progress - so agents live where teams already talk."
+links: [{"label": "Telegram docs", "href": "https://docs.agno.com/agent-os/interfaces/telegram/introduction"}, {"label": "Slack docs", "href": "https://docs.agno.com/agent-os/interfaces/slack/introduction"}, {"label": "WhatsApp docs", "href": "https://docs.agno.com/agent-os/interfaces/whatsapp/introduction"}]
+tags: ["Slack", "Telegram", "WhatsApp", "Python"]
+---
+import Flow from "../../components/diagrams/Flow.astro";
+
+<Flow steps={[{"label": "People", "items": ["Slack thread", "Telegram chat", "WhatsApp number", "Web app (AG-UI)"]}, {"label": "Interface", "title": "What I built", "accent": true, "items": ["Webhook auth", "Session routing", "Streaming replies", "Media in and out"]}, {"label": "AgentOS", "title": "Runtime", "items": ["Agent", "Team", "Workflow"]}, {"label": "Your database", "items": ["Sessions", "Memory", "Runs"]}]} loop={"Replies stream back into the same thread, with live progress cards while tools run."} caption={"One agent, many surfaces - each interface handles its platform, the agent stays the same."} />
+
+- **Telegram:** built the interface from scratch - media in and out, live-updating streamed replies with tool and reasoning status, and a Telegram toolkit.
+- **WhatsApp:** rebuilt it with media I/O, webhook signature validation, encrypted identities and support for teams and workflows.
+- **Slack:** rewrote streaming so replies appear immediately, added file handling, workspace search, channel summaries, agent-to-agent messaging and channel-scoped sessions.
+- **The details that make it usable:** fixed Slack's blank reply bubble while streaming, kept approval cards within Slack's limits so a paused agent always shows a button, and added typing and status indicators in Telegram.
