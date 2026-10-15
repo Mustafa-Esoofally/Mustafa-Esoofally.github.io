@@ -6,14 +6,14 @@ status: "Live"
 order: 2
 featured: true
 private: true
-description: "Seven research agents that analyze a spend category the way a sourcing team would - switching barriers, PESTLE, Porter's Five Forces, Kraljic matrix, cost drivers and alternative suppliers - and turn it into one report."
+description: "Seven research agents that analyze a spend category the way a sourcing team would, write the report from the team's own template and email it out - on their own, with stronger reasoning, better search and a faster runtime."
 role: "Client project for a beverage importer's category-management team. I designed and built the whole system, from a single-agent first version to the seven-agent platform."
 links: []
 tags: ["Agno", "Multi-agent", "Firecrawl", "FastAPI", "PostgreSQL", "Streamlit"]
 ---
 import Flow from "../../components/diagrams/Flow.astro";
 
-<Flow steps={[{"label": "Input", "items": ["Spend category", "Supplier"]}, {"label": "Seven research agents", "accent": true, "items": ["Company overview", "Switching barriers", "PESTLE", "Porter's Five Forces", "Kraljic matrix", "Cost drivers", "Alternative suppliers"]}, {"label": "Output", "items": ["One supplier report", "Dashboard"]}]} caption={"The analysis a sourcing team does by hand, run by agents in parallel."} />
+<Flow steps={[{"label": "Input", "items": ["Spend category", "Supplier"]}, {"label": "Seven research agents", "accent": true, "items": ["Company overview", "Switching barriers", "PESTLE", "Porter's Five Forces", "Kraljic matrix", "Cost drivers", "Alternative suppliers"]}, {"label": "Output", "items": ["Report from the team's template", "Emailed to the team", "Dashboard"]}]} caption={"The analysis a sourcing team does by hand, run by agents in parallel and delivered to their inbox."} />
 
 **The problem**
 
@@ -30,11 +30,11 @@ A company-overview agent researches the buyer and the category, then six special
 6. **Cost drivers** - what actually moves the price.
 7. **Alternative suppliers** - ranked options to consider.
 
-The agents research the web as they work and reason step by step, and every framework has its own structured output, so the report is consistent run to run.
+**What I improved**
+- **Reasoning:** agents work through each framework step by step, and every analysis has its own structured output, so the conclusions hold up and stay consistent run to run.
+- **Search:** better web search and source gathering, so the research lands on the right suppliers, markets and prices.
+- **Reports on their own:** agents fill in the team's report template themselves - from raw research to a finished supplier report, with no one stitching it together.
+- **Autonomous emailing:** finished reports go straight to the category team by email, so results arrive without anyone running the tool.
+- **Runtime:** analyses run in parallel as background jobs, keep partial results if one step fails, and land in a review dashboard with an interactive Kraljic matrix and charts.
 
-**How it runs**
-- Analyses run as background jobs, with partial-completion status if one step fails.
-- Results are stored in Postgres and shown in a review dashboard: an interactive Kraljic matrix, radar and bar charts, and JSON export.
-- Started as a single-agent dashboard, then rebuilt as the seven-agent system.
-
-**My part:** designed and built all of it - the agents, their output models, the API, storage and the dashboard. For the same client I also moved their finance and supplier platform onto Agno 2.0 and added MySQL support (see [Finance and supplier agents](/projects/beverage-finance-agents)).
+**My part:** designed and built all of it, from a single-agent first version to the seven-agent system - the agents, their output models, search, report generation, emailing, the API and the dashboard. For the same client I also moved their finance and supplier platform onto Agno 2.0 and added MySQL support (see [Finance and supplier agents](/projects/beverage-finance-agents)).
