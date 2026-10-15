@@ -13,7 +13,7 @@ const projectCollection = defineCollection({
     role: z.string().optional(),
     order: z.number().default(99),
     featured: z.boolean().default(false),
-    category: z.enum(["product", "client", "enterprise", "personal", "in-progress"]).default("personal"),
+    category: z.enum(["product", "production", "personal", "in-progress"]).default("personal"),
     status: z.string().optional(),
     private: z.boolean().default(false),
     links: z.array(link).default([]),

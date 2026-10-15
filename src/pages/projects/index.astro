@@ -6,8 +6,7 @@ import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
 const all = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
 const sections = [
   { key: "product", title: "Enterprise apps", blurb: "Agent apps and templates you run in your own cloud - any model, any database." },
-  { key: "enterprise", title: "Enterprise work", blurb: "Helping large companies put agents into production - described by industry." },
-  { key: "client", title: "Client builds", blurb: "Agent systems built for customers - described by industry, code is private." },
+  { key: "production", title: "Production systems", blurb: "Agent systems running in production for large companies - described by industry, code is private." },
   { key: "in-progress", title: "In progress", blurb: "What I'm building now." },
   { key: "personal", title: "Personal projects", blurb: "Things I built to learn and ship." },
 ];
