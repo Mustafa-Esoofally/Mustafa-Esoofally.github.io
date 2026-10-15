@@ -5,10 +5,10 @@ category: "production"
 order: 3
 featured: false
 private: true
-description: "Agents and workflows that read shipping paperwork - invoices, bills of lading, packing lists - check it, and move it through a company's internal process."
-role: "Client project for a customs and logistics software company. I built the extraction, processing APIs, records and review screens, and contributed to the document-splitting pipeline."
+description: "Document intelligence for shipping paperwork - a mixture-of-experts setup of specialist agents that reads invoices, bills of lading and packing lists far more accurately, and automates the tedious internal processes around them."
+role: "Client project for a customs and logistics software company. I improved document intelligence with a multi-agent, mixture-of-experts approach, and built the extraction, processing APIs, records and review screens."
 links: []
-tags: ["Agno", "Multi-agent", "Workflows", "OCR", "FastAPI", "PostgreSQL"]
+tags: ["Agno", "Document intelligence", "Multi-agent", "Workflows", "OCR", "FastAPI"]
 ---
 import Flow from "../../components/diagrams/Flow.astro";
 
@@ -21,6 +21,8 @@ A customs and logistics software company wanted its document handling to run on 
 Under the hood it's agents and workflows working together: a coordinating agent that fans work out to specialist sub-agents per document type, with each step's state tracked so nothing gets lost. The longer-term architecture aimed at running thousands of these agents side by side on shared servers.
 
 **My part**
+- Improved document intelligence with a mixture-of-experts approach - a specialist agent for each document type, with a coordinator routing every page to the right expert - which made results much more accurate.
+- Helped automate a range of tedious internal business processes around that paperwork.
 - Built invoice extraction and validation, background processing with status endpoints, and the database models and automatic migrations.
 - Built the review screens where operations staff check extracted fields.
 - Contributed to the pipeline that classifies and splits multi-document shipment PDFs.
