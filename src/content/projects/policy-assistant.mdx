@@ -4,10 +4,10 @@ startDate: 2025-09-15
 category: "production"
 order: 1
 private: true
-description: "A multi-agent RAG system that answers employees' questions from the firm's own handbooks - HR, leave, travel, expenses and tax - deployed for a global asset manager, a top-10 accounting firm and an AmLaw 50 law firm."
-role: "Client project, deployed for three firms."
+description: "A multi-agent RAG system that answers employees' questions from the firm's own handbooks - HR, leave, travel, expenses and tax - scaled to large document sets with better reranking, and deployed for a global asset manager, a top-10 accounting firm and an AmLaw 50 law firm."
+role: "Client project, deployed for three firms. I improved retrieval at scale, reranking and database support."
 links: []
-tags: ["Agno", "Multi-agent", "Agentic RAG", "Text-to-SQL", "Knowledge"]
+tags: ["Agno", "Multi-agent", "Agentic RAG", "Reranking", "Vector DBs", "Text-to-SQL"]
 ---
 import Flow from "../../components/diagrams/Flow.astro";
 
@@ -20,5 +20,10 @@ import Flow from "../../components/diagrams/Flow.astro";
 - A multi-agent system: a coordinator routes each question to specialized agents, each running on its own slice of company knowledge - handbooks, HR guidelines, travel and expense policy, tax documents, Notion pages and PDFs.
 - Each specialist retrieves with Agno's knowledge features - agentic search and full RAG over the document embeddings - and a reasoning SQL agent handles structured data like leave balances.
 - Answers stay grounded in the firm's own policy and point back to the source, instead of guessing.
+
+**What I improved**
+- **RAG at scale:** made retrieval hold up across large, growing document sets, so answers stay precise as each firm adds more policies.
+- **Reranking:** better reranking of what search pulls back, so the most relevant passage reaches the agent first.
+- **More databases:** added support for more vector databases and regular databases, so each firm could run it on the infrastructure it already had.
 
 **Where it ran:** a global asset manager, a top-10 accounting firm and an AmLaw 50 law firm.
