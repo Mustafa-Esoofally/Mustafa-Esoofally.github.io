@@ -4,16 +4,17 @@ startDate: 2025-10-01
 category: "production"
 order: 4
 private: true
-description: "A finance and compliance agent platform for a beverage importer - finance, SQL-reasoning and research agents plus a supplier-profile workflow, on Agno's AgentOS."
-role: "Client project. I migrated it to Agno 2.0 and AgentOS, improved the supplier-profile workflow and added MySQL support."
+description: "A finance and compliance agent platform for a beverage importer - finance, SQL-reasoning and research agents, plus browser agents that log into old government websites, download the PDFs and summarize them."
+role: "Client project. I migrated it to Agno 2.0 and AgentOS, added browser agents for government websites, improved the supplier-profile workflow and added MySQL support."
 links: []
-tags: ["Agno", "AgentOS", "Workflows", "MySQL", "AWS ECS"]
+tags: ["Agno", "AgentOS", "Browser agents", "Workflows", "MySQL", "AWS ECS"]
 ---
 **The project**
 
-An agent platform for a beverage-industry company: a finance agent that answers questions over the company's data, and a supplier-profile workflow that researches and profiles suppliers.
+An agent platform for a beverage-industry company: a finance agent that answers questions over the company's data, a supplier-profile workflow that researches and profiles suppliers, and browser agents that handle the government websites compliance depends on.
 
 **My part**
 - Moved the platform onto Agno 2.0 and AgentOS.
+- Added browser-use toolkits so agents can work on old, unreliable government websites on their own - log in, find the right records, download the PDFs, read them and summarize what matters.
 - Improved the finance agent and the supplier-profile workflow.
 - Added MySQL support so it could run on the company's existing database.
