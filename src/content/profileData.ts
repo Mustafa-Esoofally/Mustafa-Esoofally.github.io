@@ -1,9 +1,9 @@
 export const PROFILE = {
   site: {
     SEO: {
-      title: "Mustafa Esoofally - AI Engineer",
+      title: "Mustafa Esoofally - Applied AI Engineer",
       description:
-        "AI engineer in New York building agent interfaces, human-in-the-loop flows, integrations and production infrastructure. Previously AI Engineer at Agno.",
+        "Applied AI engineer in New York building production multi-agent systems, agent interfaces, memory and infrastructure. Previously Senior Software Engineer, Agents at Agno.",
     },
   },
   timezone: "America/New_York",

@@ -1,29 +1,23 @@
 ---
-title: "AI Engineer"
+title: "Senior Software Engineer, Agents"
 company: "Agno"
-startDate: 2025-05-01
+startDate: 2026-05-01
 endDate: 2026-09-30
 location: "New York, NY"
 order: 1
-summary: "Built how agents reach people on Agno, the open-source agent framework."
-highlights: ["Agents in Slack, Telegram and WhatsApp - the full experience, with approvals built in", "Context compression, efficient tool calling, memory and learning machines", "Designed Scout, Dash and Pal and the one-command Railway and AWS templates", "Automated AI code review for every pull request"]
-tags: ["Python", "Agno", "Slack", "AG-UI", "MCP", "AWS"]
+summary: "Led Agno's learning, orchestration and platform work, the open-source agent framework with 2M+ monthly downloads."
+highlights: ["Spearheaded Learning Machines - 6 learning stores so agents and teams improve every run", "Designed the sub-agent system and per-user isolation across 17 database backends", "Took concurrent-request failures from 31% to 0% and halved CI time", "Mentored and onboarded engineers"]
+tags: ["Python", "Agno", "PostgreSQL", "AWS"]
 ---
-**Interfaces - where agents meet people**
-- Built the Telegram interface from scratch; rebuilt WhatsApp (media, signature validation, encrypted identities) and Slack streaming. [Chat interfaces](/work/chat-interfaces)
-- Human-in-the-loop approval flows in Slack and over AG-UI, for agents and teams. [Approvals](/work/human-in-the-loop)
-- Started Agno's AG-UI frontend integration, including browser-side tools. [AG-UI](/work/ag-ui)
+**Platform**
+- Spearheaded [Learning Machines](/work/learning-machines), Agno's learning layer: 6 learning stores and 3 learning modes so agents and teams improve every run.
+- Designed Agno's sub-agent system: a coordinator splits complex tasks across specialists, each with its own isolated context.
+- Architected per-user isolation across all 17 database backends, unlocking multi-tenant distributed workloads and caching. [Access control](/work/security)
+- Unified tool-result compression and history compaction into one context manager, so long-running agents stay on-task. [Context engineering](/work/context-engineering)
+- Took concurrent-request failures from 31% to 0% and cut latency and memory across the agent runtime.
 
-**Integrations and context**
-- Rebuilt Gmail, Calendar and Drive toolkits on one shared, encrypted auth layer. [Google Workspace](/work/google-workspace)
-- Context providers, tool-result compression and token counting for long-running agents. [Context engineering](/work/context-engineering)
-- MCP backends, model-provider fixes and third-party toolkits. [MCP and tools](/work/mcp-and-tools)
+**Products**
+- Took [Scout](/projects/scout), [Dash](/projects/dash) and [Pal](/projects/pal) to production for enterprise teams - any model, deployed in the customer's own cloud - with the one-command [AgentOS templates](/projects/agentos-templates).
 
-**Platform and reliability**
-- Multi-tenant isolation across all 17 database backends; fixed a guardrail bypass. [Access control](/work/security)
-- Maintained the AWS and Docker AgentOS templates. [Templates](/projects/agentos-templates)
-- Built an automated AI code-review system for every pull request, and cut CI time roughly in half. [AI code review](/work/ci-review)
-
-**Products and clients**
-- Designed [Scout](/projects/scout), [Dash](/projects/dash) and [Pal](/projects/pal) - enterprise agent apps that run in your own cloud on any model - and was a core contributor to [Coda](/projects/coda).
-- Built client systems: a seven-agent [procurement intelligence](/projects/procurement-intelligence) system for a beverage importer, a multi-agent [knowledge assistant](/projects/policy-assistant) for professional-services firms, and [document agents](/projects/logistics-document-agents) for a customs and logistics company.
+**Team**
+- Mentored and onboarded engineers, and cut CI time roughly in half by parallelizing the test suite. [AI code review](/work/ci-review)
