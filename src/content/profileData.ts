@@ -3,7 +3,7 @@ export const PROFILE = {
     SEO: {
       title: "Mustafa Esoofally - Applied AI Engineer",
       description:
-        "Applied AI engineer in New York building production multi-agent systems, agent interfaces, memory and infrastructure. Previously Senior Software Engineer, Agents at Agno.",
+        "AI-obsessed engineer building production multi-agent systems, agent interfaces, memory and infrastructure. Senior Software Engineer, Agents at Agno.",
     },
   },
   timezone: "America/New_York",
@@ -11,7 +11,7 @@ export const PROFILE = {
   firstName: "Mustafa",
   name: "Mustafa Esoofally",
   status: "Open to Applied AI and Forward Deployed Engineer roles",
-  headLine: "AI-obsessed engineer in New York, getting agents into the hands of normies. I take an idea from concept to a production-ready agent - custom integrations, memory, the right context and approvals.",
+  headLine: "AI-obsessed engineer, getting agents into the hands of normies. I take an idea from concept to a production-ready agent - custom integrations, memory, the right context and approvals.",
   headLine2:
     "AI-obsessed engineer working on getting agents into the hands of normies. I take an idea from concept all the way to a production-ready agent - custom integrations, memory, the right context and approvals. The dream: a production agent in under 10 minutes and 10 lines of code, on any model, deployed anywhere. Motivated by AI that takes the mundane, repetitive work off people's plates, speeds up research, and runs wildly ambitious systems in production.",
   website: "https://mustafa-esoofally.github.io",
